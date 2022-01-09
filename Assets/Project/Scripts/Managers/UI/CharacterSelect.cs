@@ -26,9 +26,8 @@ public class CharacterSelect : MonoBehaviour, IPointerClickHandler
 
     private void OnDisable()
     {
-        EventManager.chosenHeroCount -= ChosenHeroCount;
+        EventManager.chosenHeroCount -= ChosenHeroCount;;
     }
-
 
 
     //we check if this card clicked, and then we invoke an event and send card index - MenuControl listening us
@@ -50,9 +49,17 @@ public class CharacterSelect : MonoBehaviour, IPointerClickHandler
         }
     }
 
-
+    //to hold the count of heroes that selected 
     private void ChosenHeroCount(int count)
     {
         chosenHeroCount = count;
+    }
+
+    //we need this when we choose heroes again
+    public void ReturnHeroSelectionScene()
+    {
+        isSelected = false;
+        image.color = Color.white;
+        chosenHeroCount = 0;
     }
 }
