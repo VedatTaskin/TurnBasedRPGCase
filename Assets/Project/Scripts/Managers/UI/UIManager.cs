@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UIManager : MonoBehaviour
+{
+    public GameObject menuControl;
+    public Button startButton;
+
+
+    private void Awake()
+    {
+        menuControl.SetActive(true);
+        startButton.gameObject.SetActive(false);
+    }
+    private void OnEnable()
+    {
+        EventManager.chosenHeroCount += ChosenHeroCount;
+    }
+
+
+    private void OnDisable()
+    {
+        EventManager.chosenHeroCount -= ChosenHeroCount;
+    }
+
+    // to activate start button we check chosen hero count
+    private void ChosenHeroCount(int count)
+    {
+        if (count == menuControl.GetComponent<MenuControl>().heroCountInGame)
+        {
+            startButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            startButton.gameObject.SetActive(false);
+        }
+    }
+
+
+    // if start button clicked we close menu and start button
+    public void OnStartButtonClicked()
+    {
+        menuControl.SetActive(false);
+        startButton.gameObject.SetActive(false);
+    }
+}
