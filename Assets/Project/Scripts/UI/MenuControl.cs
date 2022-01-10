@@ -87,13 +87,7 @@ public class MenuControl : MonoBehaviour
         EventManager.chosenHeroesForBattle?.Invoke(chosenHeroes);
 
         // we clear chosen hero list
-        chosenHeroes.Clear(); 
-        
-        // we set card default state        
-        for (int i = 0; i < transform.childCount ; i++)
-        {
-            transform.GetChild(i).GetComponent<CharacterSelect>().ReturnHeroSelectionScene();
-        }
+        chosenHeroes.Clear();         
 
     }
 

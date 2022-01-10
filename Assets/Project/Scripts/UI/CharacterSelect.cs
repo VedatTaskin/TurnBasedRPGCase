@@ -28,6 +28,8 @@ public class CharacterSelect : MonoBehaviour, IPointerClickHandler
     private void OnDisable()
     {
         EventManager.chosenHeroCount -= ChosenHeroCount;;
+
+        OnCardDisable();
     }
 
 
@@ -56,8 +58,8 @@ public class CharacterSelect : MonoBehaviour, IPointerClickHandler
         chosenHeroCount = count;
     }
 
-    //we need this when we choose heroes again
-    public void ReturnHeroSelectionScene()
+    // we set card default state     
+    public void OnCardDisable()
     {
         isSelected = false;
         image.color = Color.white;
