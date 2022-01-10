@@ -28,11 +28,19 @@ public class BattlePreparation : MonoBehaviour
             playerGO.name = item.Value.Name;
             playerGO.GetComponent<SpriteRenderer>().material = item.Value.material;
             playerGO.GetComponent<SpriteRenderer>().sprite = item.Value.sprite;
+            playerGO.GetComponent<Transform>().localScale *= (int)item.Value.sizeType;   
             playerGO.GetComponent<PlayerControl>().AP = item.Value.AP;
             playerGO.GetComponent<PlayerControl>().HP = item.Value.HP;
+            playerGO.GetComponent<Transform>().position = SetInstantiatingCoordinates(); 
             Instantiate(playerGO);
             EventManager.players?.Invoke(playerGO);
         }       
+    }
+
+    Vector2 SetInstantiatingCoordinates()
+    {
+
+        return Vector2.one;
     }
 
 }

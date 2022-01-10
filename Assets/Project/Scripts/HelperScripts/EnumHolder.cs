@@ -4,4 +4,4 @@ public enum ColorTypes { Red, Green, Blue};
 
 public enum ShapeTypes { Circle, Square };
 
-public enum SizeTypes { Big, Small }
+public enum SizeTypes { Small=1 , Big =2 }

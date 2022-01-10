@@ -12,7 +12,6 @@ public class Hero : MonoBehaviour
     [HideInInspector] public ShapeTypes shapeType { get;}
     [HideInInspector] public SizeTypes sizeType { get;}
     [HideInInspector] public ColorTypes colorType { get;}
-
     [HideInInspector] public Material material { get; set; }
     [HideInInspector] public Sprite sprite { get; set; }
 
