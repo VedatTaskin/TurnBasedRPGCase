@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class HeroStatCalculator : MonoBehaviour
+public class HeroPreparation : MonoBehaviour
 {
     [Header("Create and add Scriptable Objects")]
     public NameSO names;
     public ColorSO colorSO;
     public SizeSO sizeSO;
     public ShapeSO shapeSO;
+    public int playerCountInGame;
 
     Hero hero;
     [HideInInspector] public List<Hero> heroes = new List<Hero>();    // we will hold hero info in a list
@@ -33,6 +34,11 @@ public class HeroStatCalculator : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        EventManager.playerCountInGame?.Invoke(playerCountInGame);
+    }
+    
     // updating hero AP according to features of hero 
     void SetHeroAP(Hero hero)
     {

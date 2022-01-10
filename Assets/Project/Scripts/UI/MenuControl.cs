@@ -12,29 +12,31 @@ public class MenuControl : MonoBehaviour
     Dictionary<int, Hero> chosenHeroes = new Dictionary<int, Hero>();   
 
     public GameObject cardPrefab;
-    public int heroCountInGame = 3;
+    int heroCountInGame;
 
     private void OnEnable()
     {
         EventManager.addHero += AddHero;
-        EventManager.removeHero += RemoveHero;     
-       
+        EventManager.removeHero += RemoveHero;
+        EventManager.playerCountInGame += SetPlayerCount;
     }
 
     private void OnDisable()
     {
         EventManager.addHero -= AddHero;
         EventManager.removeHero -= RemoveHero;
+        EventManager.playerCountInGame -= SetPlayerCount;
 
         OnMenuDisable();
     }
+
 
     // creating cards according to heroes in the list
     private void Start()
     {
 
         // we take the hero list that created
-        heroes= GameObject.FindObjectOfType<HeroStatCalculator>().heroes;
+        heroes= GameObject.FindObjectOfType<HeroPreparation>().heroes;
 
         for (int i = 0; i < heroes.Count; i++)
         {         
@@ -78,7 +80,11 @@ public class MenuControl : MonoBehaviour
             EventManager.chosenHeroCount?.Invoke(chosenHeroes.Count);
         }        
     }
-    
+
+    private void SetPlayerCount(int count)
+    {
+        heroCountInGame = count;
+    }
     private void OnMenuDisable()
     {
         // we send chosenHero list to others;

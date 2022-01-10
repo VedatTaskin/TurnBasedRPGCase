@@ -490,7 +490,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 7682982396417843278, guid: 021033b2ca73fea4cbeeae7cd0470210,
     type: 3}
-  heroCountInGame: 3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,13 +635,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 712808228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f623f2878c85a44a827550d9aa601c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 911cde7c9c72ad9469f46ad333fbf7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   names: {fileID: 11400000, guid: 97a93fea28d82d949a2aa8cec022c531, type: 2}
   colorSO: {fileID: 11400000, guid: d3588113af2111147a065173bdc806e0, type: 2}
   sizeSO: {fileID: 11400000, guid: d88592f7513a73f448e6ea87e784f0a7, type: 2}
   shapeSO: {fileID: 11400000, guid: 51e23df1182d3a241beedb86369ab504, type: 2}
+  playerCountInGame: 3
   heroes: []
 --- !u!1 &963194225
 GameObject:

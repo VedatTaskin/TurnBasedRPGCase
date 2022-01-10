@@ -17,21 +17,21 @@ public class CharacterSelect : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         image = gameObject.GetComponent<Image>();
-        maxHeroCount = GameObject.FindObjectOfType<MenuControl>().heroCountInGame;
     }
 
     private void OnEnable()
     {
         EventManager.chosenHeroCount += ChosenHeroCount;
+        EventManager.playerCountInGame += SetMaxHeroCount; 
     }
 
     private void OnDisable()
     {
-        EventManager.chosenHeroCount -= ChosenHeroCount;;
+        EventManager.chosenHeroCount -= ChosenHeroCount;
+        EventManager.playerCountInGame -= SetMaxHeroCount;
 
         OnCardDisable();
     }
-
 
     //we check if this card clicked, and then we invoke an event and send card index - MenuControl listening us
     // we can't select any player if we reach maxHeroCount 
@@ -64,5 +64,10 @@ public class CharacterSelect : MonoBehaviour, IPointerClickHandler
         isSelected = false;
         image.color = Color.white;
         chosenHeroCount = 0;
+    }
+
+    private void SetMaxHeroCount(int count)
+    {
+        maxHeroCount = count;
     }
 }

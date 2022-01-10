@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject menuControl;
     public Button battleStartButton;
     public Button returnButton;
+    int maxHeroCount;
 
 
     private void Awake()
@@ -19,18 +20,25 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.chosenHeroCount += ChosenHeroCount;
+        EventManager.playerCountInGame += SetMaxHeroCount;
     }
 
 
     private void OnDisable()
     {
         EventManager.chosenHeroCount -= ChosenHeroCount;
+        EventManager.playerCountInGame -= SetMaxHeroCount;
+    }
+
+    private void SetMaxHeroCount(int count)
+    {
+        maxHeroCount = count;
     }
 
     // to activate start button we check chosen hero count
     private void ChosenHeroCount(int count)
     {
-        if (count == menuControl.GetComponent<MenuControl>().heroCountInGame)
+        if (count == maxHeroCount)
         {
             battleStartButton.gameObject.SetActive(true);
         }
