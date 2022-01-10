@@ -58,7 +58,7 @@ public class CharacterSelect : MonoBehaviour, IPointerClickHandler
         chosenHeroCount = count;
     }
 
-    // we set card default state     
+    // we set card to the default state     
     public void OnCardDisable()
     {
         isSelected = false;

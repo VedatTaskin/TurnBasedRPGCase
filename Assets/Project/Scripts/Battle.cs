@@ -5,26 +5,53 @@ using UnityEngine;
 
 public class Battle : MonoBehaviour
 {
-    Dictionary<int, Hero> heroesForBattle = new Dictionary<int, Hero>();
+    Player playerGO;
+    Dictionary<int, Player> players = new Dictionary<int, Player>();
+    Dictionary<int, Hero> heroesInBattle = new Dictionary<int, Hero>();
 
     private void OnEnable()
     {
-        EventManager.chosenHeroesForBattle += CreatePlayer;
+        EventManager.chosenHeroesForBattle += CreatePlayers;
     }
-
 
     private void OnDisable()
     {
-        EventManager.chosenHeroesForBattle -= CreatePlayer;
+        EventManager.chosenHeroesForBattle -= CreatePlayers;
     }
 
-    private void CreatePlayer(Dictionary<int, Hero> _heroes)
+    private void Awake()
     {
-        heroesForBattle = _heroes;
+        playerGO = new Player();
+    }
 
-        foreach (var item in heroesForBattle)
+    private void CreatePlayers(Dictionary<int, Hero> _heroes)
+    {
+        // we clear old player list
+        players.Clear();
+
+        foreach (var item in _heroes)
         {
-            print(item.Value.Name);
+            // shape check
+            ShapeCheck(item);
+            players.Add(item.Key, playerGO);
+            print(item.Value.shapeType);
+        }
+
+    }
+
+    // this is not workind
+    private void ShapeCheck(KeyValuePair<int, Hero> item)
+    {
+        if (item.Value.shapeType == ShapeTypes.Circle)
+        {
+            playerGO.GO = Resources.Load<GameObject>("GameObjects/Circle");
+            playerGO.GO.name = "circle";
+        }
+
+        else if (item.Value.shapeType == ShapeTypes.Square)
+        {
+            playerGO.GO = Resources.Load<GameObject>("GameObjects/Square");
+            playerGO.GO.name = "square";
         }
     }
 }
