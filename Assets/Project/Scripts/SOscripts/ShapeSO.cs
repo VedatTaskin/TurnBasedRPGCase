@@ -16,6 +16,7 @@ public class ShapeData
     public ShapeTypes shapeType;
     public int HP;
     public int AP;
+    public Sprite sprite;
 }
 
 
