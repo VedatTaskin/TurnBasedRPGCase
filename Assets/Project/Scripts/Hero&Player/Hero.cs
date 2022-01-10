@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Hero : MonoBehaviour
+public class Hero :MonoBehaviour
 {   
 
     [HideInInspector] public string Name { get; set; }

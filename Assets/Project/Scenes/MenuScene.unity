@@ -367,7 +367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cc5258f2cf8bf4aa054d308971ec05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGO: {fileID: 320856523475056643, guid: 4fa8ad928d78c3b4aa57d0bf0092bbe7, type: 3}
+  defaultPlayerGO: {fileID: 178077958346378796, guid: 4fa8ad928d78c3b4aa57d0bf0092bbe7,
+    type: 3}
 --- !u!222 &542907452
 CanvasRenderer:
   m_ObjectHideFlags: 0

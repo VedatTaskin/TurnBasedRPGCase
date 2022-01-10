@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
         menuControl.SetActive(true);
         battleStartButton.gameObject.SetActive(false);
         returnButton.gameObject.SetActive(false);
-
+        EventManager.OnMenuActive?.Invoke();
     }
 
     public void OnGameFinished()
