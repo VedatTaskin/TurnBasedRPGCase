@@ -19,24 +19,30 @@ MonoBehaviour:
     - shapeType: 0
       HP: 50
       AP: 0
+      sprite: {fileID: 0}
     - shapeType: 1
       HP: 0
       AP: 10
+      sprite: {fileID: 0}
   - colorType: 1
     material: {fileID: 2100000, guid: bbc350056130b1b4490c82a945d39def, type: 2}
     shapeData:
     - shapeType: 0
       HP: 0
       AP: 20
+      sprite: {fileID: 0}
     - shapeType: 1
       HP: 100
       AP: 0
+      sprite: {fileID: 0}
   - colorType: 2
     material: {fileID: 2100000, guid: cbc8e0b7f4d954443af94d8deb51d56b, type: 2}
     shapeData:
     - shapeType: 0
       HP: 0
       AP: 30
+      sprite: {fileID: 0}
     - shapeType: 1
       HP: 150
       AP: 0
+      sprite: {fileID: 0}

@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour, IPointerClickHandler
 {
     Slider slider;
-    Text text;
-    
+    Text text;    
 
     [HideInInspector] public int AP;
     [HideInInspector] public int HP;
@@ -53,5 +53,10 @@ public class PlayerControl : MonoBehaviour
     void ReturnToMenu()
     {
         Destroy(gameObject);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        print(gameObject.name);
     }
 }

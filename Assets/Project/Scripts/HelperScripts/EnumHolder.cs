@@ -1,6 +1,6 @@
-﻿public enum States { Start, PlayerTurn, EnemyTurn, Won, Lost};
+﻿public enum States { Start, PlayerTurn, EnemyTurn, Busy, Won, Lost};
 
-public enum ColorTypes { Red, Green, Blue};
+public enum ColorTypes { Red, Green, Blue };
 
 public enum ShapeTypes { Circle, Square };
 
