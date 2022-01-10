@@ -10,5 +10,6 @@ public class EventManager : MonoBehaviour
     public static Action<int> removeHero; // index of hero sends to remove from list
     public static Action<int> chosenHeroCount;
     public static Action<Dictionary<int, Hero>> chosenHeroesForBattle;
+    public static Action<GameObject> players;
  
 }

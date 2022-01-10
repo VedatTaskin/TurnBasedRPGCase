@@ -11,10 +11,8 @@ public class MenuControl : MonoBehaviour
     List<GameObject> heroCards = new List<GameObject>(); // This Cards will show on UI
     Dictionary<int, Hero> chosenHeroes = new Dictionary<int, Hero>();   
 
-
     public GameObject cardPrefab;
     public int heroCountInGame = 3;
-
 
     private void OnEnable()
     {

@@ -16,7 +16,6 @@ public class HeroStatCalculator : MonoBehaviour
     Hero hero;
     [HideInInspector] public List<Hero> heroes = new List<Hero>();    // we will hold hero info in a list
 
-
     //Creating Heroes
     private void Awake()
     {   
@@ -37,13 +36,14 @@ public class HeroStatCalculator : MonoBehaviour
     // updating hero AP according to features of hero 
     void SetHeroAP(Hero hero)
     {
+
         // Check for Shape
         foreach (var item in shapeSO.shapeList)
         {
             if (hero.shapeType == item.shapeType)
             {
-                hero.AP += item.AP;   
-
+                hero.AP += item.AP;
+                hero.sprite = item.sprite; // we assign sprite info to the hero that we create
             }
         }
         // Check for Size
@@ -61,6 +61,8 @@ public class HeroStatCalculator : MonoBehaviour
         {
             if (hero.colorType == item.colorType)
             {
+                hero.material = item.material; // we assign material info to the hero that we create
+
                 //under color we check again for the shape
                 foreach (var shapeItem in item.shapeData)
                 {

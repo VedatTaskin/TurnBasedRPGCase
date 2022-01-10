@@ -13,6 +13,10 @@ public class Hero : MonoBehaviour
     [HideInInspector] public SizeTypes sizeType { get;}
     [HideInInspector] public ColorTypes colorType { get;}
 
+    [HideInInspector] public Material material { get; set; }
+    [HideInInspector] public Sprite sprite { get; set; }
+
+
 
     //Constructor
     public Hero(string name)
@@ -20,7 +24,7 @@ public class Hero : MonoBehaviour
         Name = name;
         colorType = Utility.RandomEnumValue<ColorTypes>();
         shapeType = Utility.RandomEnumValue<ShapeTypes>();
-        sizeType = Utility.RandomEnumValue<SizeTypes>();
+        sizeType = Utility.RandomEnumValue<SizeTypes>();        
     }
 
 
