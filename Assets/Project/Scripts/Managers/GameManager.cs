@@ -59,6 +59,5 @@ public class GameManager : MonoBehaviour
     public void OnGameFinished()
     {
         restartButton.gameObject.SetActive(true);
-        EventManager.onReturnHeroSelectionScene?.Invoke();
     }
 }

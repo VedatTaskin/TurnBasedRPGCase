@@ -9,5 +9,6 @@ public class EventManager : MonoBehaviour
     public static Action<int> addHero;  // index of hero sends to add list    
     public static Action<int> removeHero; // index of hero sends to remove from list
     public static Action<int> chosenHeroCount;
-    public static Action onReturnHeroSelectionScene;
+    public static Action<Dictionary<int, Hero>> chosenHeroesForBattle;
+ 
 }

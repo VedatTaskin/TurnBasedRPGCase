@@ -5,44 +5,26 @@ using UnityEngine;
 
 public class Battle : MonoBehaviour
 {
-    Dictionary<int, Hero> heroesInBattle = new Dictionary<int, Hero>();
+    Dictionary<int, Hero> heroesForBattle = new Dictionary<int, Hero>();
 
     private void OnEnable()
     {
-        EventManager.isBattleStarted += BattleStart;
-        EventManager.chosenHeroesForBattle += CreatePlayers;
+        EventManager.chosenHeroesForBattle += CreatePlayer;
     }
+
 
     private void OnDisable()
     {
-        EventManager.isBattleStarted -= BattleStart;
-        EventManager.chosenHeroesForBattle += CreatePlayers;
+        EventManager.chosenHeroesForBattle -= CreatePlayer;
     }
 
-    private void BattleStart(bool obj)
+    private void CreatePlayer(Dictionary<int, Hero> _heroes)
     {
-        if (obj)
-        {
-            print("battle start with");
+        heroesForBattle = _heroes;
 
-        }
-
-        else
-        {
-            print("battle finished");
-        }
-    }
-
-    public void CreatePlayers(Dictionary<int,Hero> chosenHeroes)
-    {
-        heroesInBattle = chosenHeroes;
-        foreach (var item in chosenHeroes)
+        foreach (var item in heroesForBattle)
         {
             print(item.Value.Name);
         }
-
-        //var player = Resources.Load<GameObject>("Circle");
     }
-
-    
 }
