@@ -15,5 +15,6 @@ public class EventManager : MonoBehaviour
     public static Action onMenuActive;
     public static Action<GameObject> onPlayerDied;
     public static Action onBattleFinished;
+    public static Action<BaseState> onStateChange;
  
 }

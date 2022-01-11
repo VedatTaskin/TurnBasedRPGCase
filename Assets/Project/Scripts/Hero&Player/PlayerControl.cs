@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class PlayerControl : MonoBehaviour, IPointerClickHandler
+public class PlayerControl : StateManager
 {
     Slider slider;
     int sliderMaxValue;
@@ -14,25 +14,24 @@ public class PlayerControl : MonoBehaviour, IPointerClickHandler
     [HideInInspector] public int AP;
     [HideInInspector] public int HP;
 
-    void Start()
+    public override void OnEnable()
     {
-        slider = GetComponentInChildren<Slider>();
-        text = GetComponentInChildren<Text>();
-        sliderMaxValue = HP;
-        slider.value = HP / sliderMaxValue;
-        text.text = gameObject.name;
-    }
-
-    private void OnEnable()
-    {
+        base.OnEnable();
         EventManager.onMenuActive += ReturnToMenu;
     }
 
-    private void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
         EventManager.onMenuActive -= ReturnToMenu;
     }
 
+    public override void Start()
+    {
+        base.Start();
+        SetPlayerSliderAndText();
+    }
+ 
     public void TakeDamage(int damage)
     {
         HP -= damage;
@@ -56,9 +55,27 @@ public class PlayerControl : MonoBehaviour, IPointerClickHandler
         Destroy(gameObject);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public override void OnPointerClick(PointerEventData eventData)
     {
-        print(gameObject.name);
-        TakeDamage(50);
+        if (currentState==playerTurnState)
+        {
+            SwitchState(playerAttackState);
+        }
+
     }
+
+    public override void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
+    }
+
+    void SetPlayerSliderAndText()
+    {
+        slider = GetComponentInChildren<Slider>();
+        text = GetComponentInChildren<Text>();
+        sliderMaxValue = HP;
+        slider.value = HP / sliderMaxValue;
+        text.text = gameObject.name;
+    }
+
 }

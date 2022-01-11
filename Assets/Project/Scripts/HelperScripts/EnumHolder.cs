@@ -1,4 +1,4 @@
-﻿public enum States { Start, PlayerTurn, EnemyTurn, Busy, Won, Lost};
+﻿//public enum States { BattleStart, PlayerTurn, EnemyTurn, Busy, Won, Lost};
 
 public enum ColorTypes { Red, Green, Blue };
 
