@@ -8,19 +8,18 @@ using UnityEngine.EventSystems;
 public class PlayerControl : MonoBehaviour, IPointerClickHandler
 {
     Slider slider;
+    int sliderMaxValue;
     Text text;    
 
     [HideInInspector] public int AP;
     [HideInInspector] public int HP;
-    private int sliderMaxValue;
-
 
     void Start()
     {
         slider = GetComponentInChildren<Slider>();
         text = GetComponentInChildren<Text>();
-        //sliderMaxValue = HP;
-        //slider.value = HP / sliderMaxValue;
+        sliderMaxValue = HP;
+        slider.value = HP / sliderMaxValue;
         text.text = gameObject.name;
     }
 
@@ -37,12 +36,13 @@ public class PlayerControl : MonoBehaviour, IPointerClickHandler
     public void TakeDamage(int damage)
     {
         HP -= damage;
+
         if (HP <= 0)
         {
             Die();
         }
 
-        slider.value = HP/sliderMaxValue;
+        slider.value = (float) HP/sliderMaxValue;
     }
 
     private void Die()
@@ -58,5 +58,6 @@ public class PlayerControl : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         print(gameObject.name);
+        TakeDamage(10);
     }
 }

@@ -29,7 +29,7 @@ public class BattlePreparation : MonoBehaviour
 
         foreach (var item in _heroes)
         {
-            
+
             GameObject playerGO = (GameObject)Instantiate(defaultPlayerGO);
 
             // we will assign values to Gameobject;
@@ -39,10 +39,23 @@ public class BattlePreparation : MonoBehaviour
             playerGO.GetComponent<Transform>().localScale *= (int)item.Value.sizeType;
             playerGO.GetComponent<PlayerControl>().AP = item.Value.AP;
             playerGO.GetComponent<PlayerControl>().HP = item.Value.HP;
-            playerGO.transform.position = new Vector2(-6, offsetY * i - 3);  // we can do better placement later
+            SetPosition(i, playerGO);
 
             EventManager.players?.Invoke(playerGO);
             i++;
         }
+    }
+
+    private void SetPosition(int i, GameObject playerGO)
+    {
+        if (i%2==0)
+        {
+            playerGO.transform.position = new Vector2(-6, offsetY * i - 3);  // we can do better placement later
+        }
+        else
+        {
+            playerGO.transform.position = new Vector2(-3, offsetY * i - 3);  // we can do better placement later
+        }
+       
     }
 }
