@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class PlayerControl : StateManager
+public class PlayerControl : StateManager,IDamagable
 {
     Slider slider;
     int sliderMaxValue;
@@ -18,13 +18,11 @@ public class PlayerControl : StateManager
     public override void OnEnable()
     {
         base.OnEnable();
-        EventManager.onMenuActive += ReturnToMenu;
     }
 
     public override void OnDisable()
     {
         base.OnDisable();
-        EventManager.onMenuActive -= ReturnToMenu;
     }
 
     public override void Start()
@@ -51,14 +49,10 @@ public class PlayerControl : StateManager
         Destroy(gameObject);
     }
 
-    void ReturnToMenu()
-    {
-        Destroy(gameObject);
-    }
-
     public override void OnPointerClick(PointerEventData eventData)
     {
-        if (currentState==playerTurnState)
+
+        if (currentState.GetType() ==playerTurnState.GetType())
         {
             SwitchState(playerAttackState);
 
@@ -66,16 +60,10 @@ public class PlayerControl : StateManager
         }
     }
 
-
-    public override void OnCollisionEnter2D(Collision2D collision2D)
-    {
-        currentState.OnCollisionEnter2D(this, collision2D);
-    }
-
     void MovePlayer()
     {
         var pos= GameObject.FindGameObjectWithTag("Enemy").transform.position;
-        transform.DOMove(pos, 1).OnComplete(() => SwitchState(enemyTurnState));
+        transform.DOMove(pos, 1).SetEase(Ease.OutCubic).SetLoops(2,LoopType.Yoyo).OnComplete(() => SwitchState(enemyTurnState));        
     }
 
     void SetPlayerSliderAndText()
@@ -87,4 +75,26 @@ public class PlayerControl : StateManager
         text.text = gameObject.name;
     }
 
+    private void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        IDamagable damagable = collider2D.gameObject.GetComponent<IDamagable>();
+
+        if (damagable != null && currentState.GetType() == playerAttackState.GetType())
+        {
+            damagable.TakeDamage(AP);
+        }
+    }
+
+    public override void OnStateChanged(BaseState baseState)
+    {
+        base.OnStateChanged(baseState);
+
+        print(currentState);
+
+        if (currentState.GetType() == gameFinishState.GetType())
+        {
+            Destroy(gameObject);
+        }
+
+    }
 }

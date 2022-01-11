@@ -9,13 +9,11 @@ public class StateManager : MonoBehaviour, IPointerClickHandler
 
     #region States
     public BaseState currentState;
-    public BattleStartState battleStartState = new BattleStartState();
     public PlayerTurnState playerTurnState = new PlayerTurnState();
     public PlayerAttackState playerAttackState = new PlayerAttackState();    
     public EnemyTurnState enemyTurnState = new EnemyTurnState();
     public EnemyAttackState enemyAttackState = new EnemyAttackState();
-    public WinState winState = new WinState();
-    public LostState lostState = new LostState();
+    public GameFinishState gameFinishState = new GameFinishState();
     #endregion
 
     public virtual void OnEnable()

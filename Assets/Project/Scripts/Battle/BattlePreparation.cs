@@ -8,13 +8,14 @@ using UnityEngine;
 public class BattlePreparation : MonoBehaviour
 {
     public GameObject defaultPlayerGO; // default gameobject will modify according to shape, size, color   
-
+    public GameObject enemy;
     float offsetY = 3.5f;
 
 
     private void OnEnable()
     {
-        EventManager.heroesAreChosenForBattle += CreatePlayers;        
+        EventManager.heroesAreChosenForBattle += CreatePlayers;
+        enemy.SetActive(false);
     }
 
     private void OnDisable()
@@ -44,6 +45,8 @@ public class BattlePreparation : MonoBehaviour
             EventManager.onPlayerCreated?.Invoke(playerGO);
             i++;
         }
+
+        enemy.SetActive(true);
     }
 
     // we can do better placement later :)

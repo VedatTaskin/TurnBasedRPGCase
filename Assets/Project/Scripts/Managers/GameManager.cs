@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         if (playersInGame.Count<=0)
         {
             print("tehere is no player");
-            EventManager.onBattleFinished?.Invoke();
+            EventManager.lostGame?.Invoke();
         }
     }
 
