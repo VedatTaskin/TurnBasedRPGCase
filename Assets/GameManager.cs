@@ -9,14 +9,27 @@ public class GameManager : MonoBehaviour
     Dictionary<string, GameObject> playersInGame = new Dictionary<string, GameObject>();
     private void OnEnable()
     {
-        EventManager.players += OnPlayerCreated;
-        EventManager.OnMenuActive += OnMenuActive;
+        EventManager.onPlayerCreated += OnPlayerCreated;
+        EventManager.onMenuActive += OnMenuActive;
+        EventManager.onPlayerDied += OnPlayerDied;
     }
 
     private void OnDisable()
     {
-        EventManager.players -= OnPlayerCreated;
-        EventManager.OnMenuActive -= OnMenuActive;
+        EventManager.onPlayerCreated -= OnPlayerCreated;
+        EventManager.onMenuActive -= OnMenuActive;
+        EventManager.onPlayerDied -= OnPlayerDied;
+    }
+
+    private void OnPlayerDied(GameObject obj)
+    {
+        playersInGame.Remove(obj.name);
+
+        if (playersInGame.Count<=0)
+        {
+            print("tehere is no player");
+            EventManager.onBattleFinished?.Invoke();
+        }
     }
 
     private void OnMenuActive()

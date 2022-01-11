@@ -25,12 +25,12 @@ public class PlayerControl : MonoBehaviour, IPointerClickHandler
 
     private void OnEnable()
     {
-        EventManager.OnMenuActive += ReturnToMenu;
+        EventManager.onMenuActive += ReturnToMenu;
     }
 
     private void OnDisable()
     {
-        EventManager.OnMenuActive -= ReturnToMenu;
+        EventManager.onMenuActive -= ReturnToMenu;
     }
 
     public void TakeDamage(int damage)
@@ -46,8 +46,9 @@ public class PlayerControl : MonoBehaviour, IPointerClickHandler
     }
 
     private void Die()
-    {
-        print("we died");
+    {        
+        EventManager.onPlayerDied?.Invoke(gameObject);
+        Destroy(gameObject);
     }
 
     void ReturnToMenu()
@@ -58,6 +59,6 @@ public class PlayerControl : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         print(gameObject.name);
-        TakeDamage(10);
+        TakeDamage(50);
     }
 }

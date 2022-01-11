@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//Hero list taken and "players" are preaparing
+//Hero list taken and "players" are preparing
 public class BattlePreparation : MonoBehaviour
 {
     public GameObject defaultPlayerGO; // default gameobject will modify according to shape, size, color   
@@ -14,12 +14,12 @@ public class BattlePreparation : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.HeroesAreChosenForBattle += CreatePlayers;        
+        EventManager.heroesAreChosenForBattle += CreatePlayers;        
     }
 
     private void OnDisable()
     {
-        EventManager.HeroesAreChosenForBattle -= CreatePlayers;
+        EventManager.heroesAreChosenForBattle -= CreatePlayers;
     }
 
     // player features are defining;
@@ -41,11 +41,12 @@ public class BattlePreparation : MonoBehaviour
             playerGO.GetComponent<PlayerControl>().HP = item.Value.HP;
             SetPosition(i, playerGO);
 
-            EventManager.players?.Invoke(playerGO);
+            EventManager.onPlayerCreated?.Invoke(playerGO);
             i++;
         }
     }
 
+    // we can do better placement later :)
     private void SetPosition(int i, GameObject playerGO)
     {
         if (i%2==0)

@@ -88,7 +88,7 @@ public class MenuControl : MonoBehaviour
     private void OnMenuDisable()
     {
         // we send chosenHero list to others;
-        EventManager.HeroesAreChosenForBattle?.Invoke(chosenHeroes);
+        EventManager.heroesAreChosenForBattle?.Invoke(chosenHeroes);
 
         // we clear chosen hero list
         chosenHeroes.Clear();         
