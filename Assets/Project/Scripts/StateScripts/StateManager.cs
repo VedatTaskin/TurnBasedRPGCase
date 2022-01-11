@@ -33,9 +33,9 @@ public class StateManager : MonoBehaviour, IPointerClickHandler
         currentState = playerTurnState;
     }
 
-    public virtual void OnCollisionEnter(Collision collision)
-    {
-        currentState.OnCollisionEnter(this, collision);
+    public virtual void OnCollisionEnter2D(Collision2D collision2D)
+    {        
+
     }
 
     public virtual void OnPointerClick(PointerEventData eventData) 

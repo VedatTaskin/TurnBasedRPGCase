@@ -8,7 +8,7 @@ public class BattleStartState : BaseState
     }
 
 
-    public override void OnCollisionEnter(StateManager stateM, Collision collision)
+    public override void OnCollisionEnter2D(StateManager stateM, Collision2D collision2D)
     {
         
     }

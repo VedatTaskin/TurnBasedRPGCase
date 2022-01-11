@@ -8,8 +8,16 @@ public class PlayerAttackState : BaseState
         EventManager.onStateChange?.Invoke(stateM.playerAttackState);
     }
 
-    public override void OnCollisionEnter(StateManager stateM, Collision collision)
+    public override void OnCollisionEnter2D(StateManager stateM, Collision2D collision2D)
     {
+        IDamagable damagable = collision2D.gameObject.GetComponent<IDamagable>();
+
+        if (damagable != null)
+        {
+            damagable.TakeDamage(10);
+        }
+
+        Debug.Log("there is col");
 
     }
 

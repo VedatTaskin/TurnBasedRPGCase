@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class PlayerControl : StateManager
 {
@@ -60,13 +61,21 @@ public class PlayerControl : StateManager
         if (currentState==playerTurnState)
         {
             SwitchState(playerAttackState);
-        }
 
+            MovePlayer();
+        }
     }
 
-    public override void OnCollisionEnter(Collision collision)
+
+    public override void OnCollisionEnter2D(Collision2D collision2D)
     {
-        base.OnCollisionEnter(collision);
+        currentState.OnCollisionEnter2D(this, collision2D);
+    }
+
+    void MovePlayer()
+    {
+        var pos= GameObject.FindGameObjectWithTag("Enemy").transform.position;
+        transform.DOMove(pos, 1).OnComplete(() => SwitchState(enemyTurnState));
     }
 
     void SetPlayerSliderAndText()
