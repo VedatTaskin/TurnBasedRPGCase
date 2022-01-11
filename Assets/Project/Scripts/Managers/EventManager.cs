@@ -13,5 +13,6 @@ public class EventManager : MonoBehaviour
     public static Action<GameObject> players;
     public static Action<int> playerCountInGame;
     public static Action OnMenuActive;
+    
  
 }
