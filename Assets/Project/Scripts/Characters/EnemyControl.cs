@@ -1,22 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 using DG.Tweening;
 
 
-public class EnemyControl : StateManager,IDamagable
+public class EnemyControl : DefaultCharacterControl
 {
-    Slider slider;
-    int sliderMaxValue;
-    Text text;
     GameObject targetGO;  // temporary target
-    int HP;
-    int AP;
 
     public override void OnEnable()
     {
         base.OnEnable();
-        SetEnemySliderAndText();
         EventManager.playerLostGame += PlayerLostGame;
     }
 
@@ -25,22 +20,8 @@ public class EnemyControl : StateManager,IDamagable
         base.OnDisable();
         EventManager.playerLostGame -= PlayerLostGame;
     }
-     
-    public void TakeDamage(int damage)
-    {
-        HP -= damage;
 
-        if (HP <= 0)
-        {
-            Die();
-        }
-
-        slider.value = (float)HP / sliderMaxValue;
-
-        transform.DOShakePosition(0.5f, 1, 10, 90); // we give some shake
-    }
-
-    private void Die()
+    public override void Die()
     {
         EventManager.playerWinGame?.Invoke();
         SwitchState(gameFinishState);
@@ -49,21 +30,17 @@ public class EnemyControl : StateManager,IDamagable
 
     void MoveEnemy()
     {
-        Vector3 target= FindRandomEnemy();
+        Vector3 target= FindRandomPlayerTarget();
         transform.DOMove(target, 1).SetEase(Ease.OutCubic).SetLoops(2, LoopType.Yoyo).
             OnComplete(() => SwitchState(playerTurnState));
     }
 
-    private void SetEnemySliderAndText()
+    public override void SetSliderAndText()
     {
         // we set defaultenemy HP and AP
-        HP = UnityEngine.Random.Range(400, 800);
-        AP = UnityEngine.Random.Range(30, 50);
-        slider = GetComponentInChildren<Slider>();
-        text = GetComponentInChildren<Text>();
-        sliderMaxValue = HP;
-        slider.value = (float) HP / sliderMaxValue;
-        text.text = "Enemy";
+        HP = 100;  //UnityEngine.Random.Range(400, 800);
+        AP = 20; // UnityEngine.Random.Range(30, 50);
+        base.SetSliderAndText();
     }
 
     public override void OnStateChanged(BaseState baseState)
@@ -85,17 +62,7 @@ public class EnemyControl : StateManager,IDamagable
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collider2D)
-    {
-        IDamagable damagable = collider2D.gameObject.GetComponent<IDamagable>();
-
-        if (damagable != null && currentState.GetType() == enemyAttackState.GetType() && targetGO.name ==collider2D.name)
-        {
-            damagable.TakeDamage(AP);
-        }
-    }
-
-    public Vector3 FindRandomEnemy()
+    public Vector3 FindRandomPlayerTarget()
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Player");
@@ -110,5 +77,19 @@ public class EnemyControl : StateManager,IDamagable
         gameObject.SetActive(false);
     }
 
+    public override void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        IDamagable damagable = collider2D.gameObject.GetComponent<IDamagable>();
+
+        if (damagable != null && currentState.GetType() == enemyAttackState.GetType() && targetGO.name == collider2D.name)
+        {
+            damagable.TakeDamage(AP);
+
+            if (boxCollider2D.isActiveAndEnabled)
+            {
+                StartCoroutine(CloseColliderLittleTime(1.5f));
+            }
+        }
+    }
 
 }

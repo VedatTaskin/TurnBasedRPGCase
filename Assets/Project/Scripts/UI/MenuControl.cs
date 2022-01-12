@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuControl : MonoBehaviour
 {
-
     List<Hero> heroes = new List<Hero>();   //all heroes in our list
     List<GameObject> heroCards = new List<GameObject>(); // This Cards will show on UI
     Dictionary<int, Hero> chosenHeroes = new Dictionary<int, Hero>();   

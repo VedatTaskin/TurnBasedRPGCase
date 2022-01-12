@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class StateManager : MonoBehaviour, IPointerClickHandler
+public class StateManager : MonoBehaviour
 {
 
     #region States
@@ -31,14 +28,6 @@ public class StateManager : MonoBehaviour, IPointerClickHandler
         currentState = playerTurnState;
     }
 
-    public virtual void OnCollisionEnter2D(Collision2D collision2D)
-    {        
-
-    }
-
-    public virtual void OnPointerClick(PointerEventData eventData) 
-    {
-    }
 
     public virtual void SwitchState(BaseState baseState)
     {

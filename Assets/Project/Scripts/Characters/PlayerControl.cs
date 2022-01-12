@@ -1,50 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class PlayerControl : StateManager,IDamagable
+
+public class PlayerControl : DefaultCharacterControl
 {
-    Slider slider;
-    int sliderMaxValue;
-    Text text;    
-
-    [HideInInspector] public int AP;
-    [HideInInspector] public int HP;
-
-    public override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
-    public override void OnDisable()
-    {
-        base.OnDisable();
-    }
-
     public override void Start()
     {
         base.Start();
-        SetPlayerSliderAndText();
-    }
- 
-    public void TakeDamage(int damage)
-    {
-        HP -= damage;
-
-        if (HP <= 0)
-        {
-            Die();
-        }
-
-        slider.value = (float) HP/sliderMaxValue;
-        transform.DOShakePosition(0.5f, 1, 10, 90); // we give some shake
+        text.text = gameObject.name;
+        sliderMaxValue = HP;
     }
 
-    private void Die()
+    public override void Die()
     {        
         EventManager.onPlayerDied?.Invoke(gameObject);
         Destroy(gameObject);
@@ -67,22 +36,18 @@ public class PlayerControl : StateManager,IDamagable
         transform.DOMove(pos, 1).SetEase(Ease.OutCubic).SetLoops(2,LoopType.Yoyo).OnComplete(() => SwitchState(enemyTurnState));        
     }
 
-    void SetPlayerSliderAndText()
-    {
-        slider = GetComponentInChildren<Slider>();
-        text = GetComponentInChildren<Text>();
-        sliderMaxValue = HP;
-        slider.value = HP / sliderMaxValue;
-        text.text = gameObject.name;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider2D)
+    public override void OnTriggerEnter2D(Collider2D collider2D)
     {
         IDamagable damagable = collider2D.gameObject.GetComponent<IDamagable>();
 
         if (damagable != null && currentState.GetType() == playerAttackState.GetType())
         {
             damagable.TakeDamage(AP);
+
+            if (boxCollider2D.isActiveAndEnabled)
+            {
+                StartCoroutine(CloseColliderLittleTime(1.5f));
+            }
         }
     }
 
