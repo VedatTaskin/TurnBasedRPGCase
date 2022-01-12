@@ -36,6 +36,8 @@ public class EnemyControl : StateManager,IDamagable
         }
 
         slider.value = (float)HP / sliderMaxValue;
+
+        transform.DOShakePosition(0.5f, 1, 10, 90); // we give some shake
     }
 
     private void Die()
@@ -55,8 +57,8 @@ public class EnemyControl : StateManager,IDamagable
     private void SetEnemySliderAndText()
     {
         // we set defaultenemy HP and AP
-        HP = 500;//UnityEngine.Random.Range(400, 800);
-        AP = 200;//UnityEngine.Random.Range(30, 50);
+        HP = UnityEngine.Random.Range(400, 800);
+        AP = UnityEngine.Random.Range(30, 50);
         slider = GetComponentInChildren<Slider>();
         text = GetComponentInChildren<Text>();
         sliderMaxValue = HP;

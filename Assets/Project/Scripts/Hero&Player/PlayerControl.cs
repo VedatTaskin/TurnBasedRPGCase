@@ -41,6 +41,7 @@ public class PlayerControl : StateManager,IDamagable
         }
 
         slider.value = (float) HP/sliderMaxValue;
+        transform.DOShakePosition(0.5f, 1, 10, 90); // we give some shake
     }
 
     private void Die()
