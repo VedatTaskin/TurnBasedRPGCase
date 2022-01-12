@@ -89,12 +89,12 @@ public class PlayerControl : StateManager,IDamagable
     {
         base.OnStateChanged(baseState);
 
-        print(currentState);
-
         if (currentState.GetType() == gameFinishState.GetType())
         {
             Destroy(gameObject);
         }
 
     }
+
+
 }

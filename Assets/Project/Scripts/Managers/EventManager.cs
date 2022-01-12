@@ -14,8 +14,8 @@ public class EventManager : MonoBehaviour
     public static Action<int> playerCountInGame;
     public static Action onMenuActive;
     public static Action<GameObject> onPlayerDied;
-    public static Action lostGame;
-    public static Action winGame;
+    public static Action playerLostGame;
+    public static Action playerWinGame;
     public static Action<BaseState> onStateChange;
  
 }

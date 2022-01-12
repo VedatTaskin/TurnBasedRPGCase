@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject menuControl;
     public Button battleStartButton;
     public Button returnButton;
+    public Text resultText;
     int maxHeroCount;
 
 
@@ -21,16 +22,16 @@ public class UIManager : MonoBehaviour
     {
         EventManager.chosenHeroCount += ChosenHeroCount;
         EventManager.playerCountInGame += SetMaxHeroCount;
-        EventManager.lostGame += OnBattleLost;
-        EventManager.winGame += OnBattleWon;
+        EventManager.playerLostGame += OnBattleLost;
+        EventManager.playerWinGame += OnBattleWon;
     }
 
     private void OnDisable()
     {
         EventManager.chosenHeroCount -= ChosenHeroCount;
         EventManager.playerCountInGame -= SetMaxHeroCount;
-        EventManager.lostGame -= OnBattleLost;
-        EventManager.winGame -= OnBattleWon;
+        EventManager.playerLostGame -= OnBattleLost;
+        EventManager.playerWinGame -= OnBattleWon;
     }
 
     private void SetMaxHeroCount(int count)
@@ -63,16 +64,20 @@ public class UIManager : MonoBehaviour
         menuControl.SetActive(true);
         battleStartButton.gameObject.SetActive(false);
         returnButton.gameObject.SetActive(false);
+        resultText.gameObject.SetActive(false);
         EventManager.onMenuActive?.Invoke();
     }
 
     public void OnBattleLost()
     {
+        resultText.gameObject.SetActive(true);
+        resultText.text = "YOU LOST";
         returnButton.gameObject.SetActive(true);
     }
 
     private void OnBattleWon()
     {
+        resultText.text = "YOU WIN";
         returnButton.gameObject.SetActive(true);
     }
 }

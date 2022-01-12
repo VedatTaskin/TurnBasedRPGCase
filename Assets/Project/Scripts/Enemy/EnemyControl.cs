@@ -17,11 +17,13 @@ public class EnemyControl : StateManager,IDamagable
     {
         base.OnEnable();
         SetEnemySliderAndText();
+        EventManager.playerLostGame += PlayerLostGame;
     }
 
     public override void OnDisable()
     {
         base.OnDisable();
+        EventManager.playerLostGame -= PlayerLostGame;
     }
      
     public void TakeDamage(int damage)
@@ -38,7 +40,7 @@ public class EnemyControl : StateManager,IDamagable
 
     private void Die()
     {
-        EventManager.winGame?.Invoke();
+        EventManager.playerWinGame?.Invoke();
         SwitchState(gameFinishState);
         gameObject.SetActive(false);
     }
@@ -53,8 +55,8 @@ public class EnemyControl : StateManager,IDamagable
     private void SetEnemySliderAndText()
     {
         // we set defaultenemy HP and AP
-        HP = 50;//UnityEngine.Random.Range(400, 800);
-        AP = 10;//UnityEngine.Random.Range(30, 50);
+        HP = 500;//UnityEngine.Random.Range(400, 800);
+        AP = 200;//UnityEngine.Random.Range(30, 50);
         slider = GetComponentInChildren<Slider>();
         text = GetComponentInChildren<Text>();
         sliderMaxValue = HP;
@@ -95,8 +97,16 @@ public class EnemyControl : StateManager,IDamagable
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Player");
+        //print(gos.Length);
         targetGO = gos[Random.Range(0, gos.Length)];
         return targetGO.transform.position;
     }
+
+    private void PlayerLostGame()
+    {
+        SwitchState(gameFinishState);
+        gameObject.SetActive(false);
+    }
+
 
 }
