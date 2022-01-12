@@ -19,15 +19,16 @@ public class MenuControl : MonoBehaviour
         EventManager.addHero += AddHero;
         EventManager.removeHero += RemoveHero;
         EventManager.playerCountInGame += SetPlayerCount;
+        EventManager.onBattleStarts += OnBattleStarts;
     }
+
 
     private void OnDisable()
     {
         EventManager.addHero -= AddHero;
         EventManager.removeHero -= RemoveHero;
         EventManager.playerCountInGame -= SetPlayerCount;
-
-        OnMenuDisable();
+        EventManager.onBattleStarts -= OnBattleStarts;
     }
 
 
@@ -85,14 +86,17 @@ public class MenuControl : MonoBehaviour
     {
         heroCountInGame = count;
     }
-    private void OnMenuDisable()
+
+
+    private void OnBattleStarts()
     {
         // we send chosenHero list to others;
         EventManager.heroesAreChosenForBattle?.Invoke(chosenHeroes);
 
         // we clear chosen hero list
-        chosenHeroes.Clear();         
+        chosenHeroes.Clear();
 
+        gameObject.SetActive(false);
     }
 
 }

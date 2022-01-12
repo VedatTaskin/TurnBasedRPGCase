@@ -10,6 +10,7 @@ public class EventManager : MonoBehaviour
     public static Action<int> removeHero; // index of hero sends to remove from list
     public static Action<int> chosenHeroCount;
     public static Action<Dictionary<int, Hero>> heroesAreChosenForBattle;
+    public static Action onBattleStarts;
     public static Action<GameObject> onPlayerCreated;
     public static Action<int> playerCountInGame;
     public static Action onMenuActive;

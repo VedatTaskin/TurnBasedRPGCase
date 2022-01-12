@@ -55,8 +55,8 @@ public class UIManager : MonoBehaviour
     // if start button clicked we close menu and start button
     public void BattleStart()
     {
-        menuControl.SetActive(false);
         battleStartButton.gameObject.SetActive(false);
+        EventManager.onBattleStarts?.Invoke();
     }
 
     public void Restart()
