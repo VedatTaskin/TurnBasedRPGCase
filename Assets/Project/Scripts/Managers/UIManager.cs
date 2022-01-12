@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public Button battleStartButton;
     public Button returnButton;
     public Text resultText;
+    public Text warningText;
     int maxHeroCount;
 
 
@@ -31,6 +32,11 @@ public class UIManager : MonoBehaviour
         EventManager.playerWinGame -= OnBattleWon;
     }
 
+    private void Start()
+    {
+        warningText.text = "PICK " + maxHeroCount + " HEROES";
+    }
+
     private void SetMaxHeroCount(int count)
     {
         maxHeroCount = count;
@@ -53,11 +59,13 @@ public class UIManager : MonoBehaviour
     public void BattleStart()
     {
         battleStartButton.gameObject.SetActive(false);
+        warningText.text = "PICK A HERO TO ATTACK";
         EventManager.onBattleStarts?.Invoke();
     }
 
     public void Restart()
     {
+        warningText.gameObject.SetActive(true);
         menuControl.SetActive(true);
         battleStartButton.gameObject.SetActive(false);
         returnButton.gameObject.SetActive(false);
