@@ -37,9 +37,9 @@ public class EnemyControl : DefaultCharacterControl
 
     public override void SetSliderAndText()
     {
-        // we set defaultenemy HP and AP
-        HP = 100;  //UnityEngine.Random.Range(400, 800);
-        AP = 20; // UnityEngine.Random.Range(30, 50);
+        // we set default enemy HP and AP randomly
+        HP = UnityEngine.Random.Range(400, 1000);
+        AP = UnityEngine.Random.Range(30, 60);
         base.SetSliderAndText();
     }
 

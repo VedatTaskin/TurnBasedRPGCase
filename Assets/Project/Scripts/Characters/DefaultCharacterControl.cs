@@ -8,7 +8,7 @@ using System;
 public class DefaultCharacterControl : StateManager, IPointerClickHandler, IDamagable 
 {
     protected Slider slider;
-    public int sliderMaxValue;
+    protected int sliderMaxValue;
     protected Text text;
     protected BoxCollider2D boxCollider2D;
 
