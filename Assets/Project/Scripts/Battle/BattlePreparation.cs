@@ -7,6 +7,7 @@ using UnityEngine;
 //Hero list taken and "players" are preparing
 public class BattlePreparation : MonoBehaviour
 {
+    List<Hero> heroes = new List<Hero>();   //all heroes in our list
     public GameObject defaultPlayerGO; // default gameobject will modify according to shape, size, color   
     public GameObject enemy;
     float offsetY = 3.5f;
@@ -14,16 +15,27 @@ public class BattlePreparation : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.heroesAreChosenForBattle += CreatePlayers;
+        EventManager.heroesAreChosenForBattle += CreateCharacters;
         enemy.SetActive(false);
     }
 
     private void OnDisable()
     {
-        EventManager.heroesAreChosenForBattle -= CreatePlayers;
+        EventManager.heroesAreChosenForBattle -= CreateCharacters;
     }
 
+    private void Start()
+    {
+        // we take the hero list that created
+        heroes = GameObject.FindObjectOfType<HeroPreparation>().heroes;
+    }
     // player features are defining;
+    private void CreateCharacters(Dictionary<int, Hero> _heroes)
+    {
+        CreatePlayers(_heroes);
+        CreateEnemy();
+    }
+
     private void CreatePlayers(Dictionary<int, Hero> _heroes)
     {
         int i = 0; // change position of object for next iteration
@@ -45,7 +57,15 @@ public class BattlePreparation : MonoBehaviour
             EventManager.onPlayerCreated?.Invoke(playerGO);
             i++;
         }
+    }
 
+    //we choose random hero for our enemy shape (among 10 hero )
+    private void CreateEnemy()
+    {
+        enemy.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f); // we need this to set default scale  when activate and deactivate enemy
+        enemy.GetComponent<SpriteRenderer>().material = heroes[UnityEngine.Random.Range(0, heroes.Count)].material;
+        enemy.GetComponent<SpriteRenderer>().sprite = heroes[UnityEngine.Random.Range(0, heroes.Count)].sprite;
+        enemy.GetComponent<Transform>().localScale *= (int) heroes[UnityEngine.Random.Range(0, heroes.Count)].sizeType;
         enemy.SetActive(true);
     }
 

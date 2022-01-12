@@ -19,7 +19,6 @@ public class MenuControl : MonoBehaviour
         EventManager.onBattleStarts += OnBattleStarts;
     }
 
-
     private void OnDisable()
     {
         EventManager.addHero -= AddHero;
