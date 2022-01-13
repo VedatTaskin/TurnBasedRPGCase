@@ -1,29 +1,28 @@
 # TurnBasedRPGCase
 
 
-PLAYER <br>
-•	Player’ların özellikleri (Shape, Size ve Color) scriptable object olarak oluşturulmakta ve HeroCreator objesi üzerinden atanmaktadır. <br>
-•	Oluşturulan 10 Hero menüde gösterilmektedir. Bunlardan istenen sayıda kart (default 3 ama farklı bir değer girilebilir-HeroCreator objesinden-) seçildiğinde oyuna başlama butonu aktif olmaktadır.<br>
-•	Oyun başlatıldığında seçilen kartlar BattlePreparation scripti aracılığıyla GameObject olarak instantiate edilmektedir.<br>
+PLAYER<br>
+• Players' properties (Shape, Size and Color) are created as scriptable objects and assigned through the HeroCreator object.<br>
+• The created 10 Heroes are displayed in the menu. When the desired number of cards (default 3, but a different value can be entered-from the HeroCreator object-) is selected, the game start button becomes active.<br>
+• When the game is started, the selected cards are instantiated as GameObjects via the BattlePreparation script.<br>
 
 ENEMY<br>
-•	Oyundaki enemy’nin şekil özellikleri (renk ayrıca random) rasgele oluşturulan 10 Hero’dan birisi seçilerek verilmektedir.<br> 
-•	Enemy AP ve HP değerleri rasgele atanmaktadır. <br>
+• The shape features of the enemy in the game (color also random) are given by choosing one of the 10 randomly generated Heroes.<br>
+• Enemy AP and HP values ​​are randomly assigned.<br>
 
-SHAPE, SIZE VE COLOR SCRIPTABLE OBJECTS <br>
-•	Oluşturulan SO ‘lara farklı sprite ve material atanabilir.<br>
-•	SO’lardaki seçenekler Enum’dan (Enum Holder) alınmaktadır. Buraya farklı seçenekler eklenip- azaltılabilir.<br>
+SHAPE, SIZE AND COLOR SCRIPTABLE OBJECTS<br>
+• Different sprites and materials can be assigned to the created SOs.<br>
+• Options in SOs are taken from Enum (Enum Holder). Different options can be added and reduced here.<br>
 
 STATES<br>
-•	Oyunun genişleyebileceği düşünülerek State Pattern kullanılmaya çalışılmıştır. <br>
+• State Pattern has been tried to be used, considering that the game can expand.<br>
 
 EVENTS<br>
-•	Oyundaki Event’ler takibi kolay olması için EventManager’da tutulmaktadır. <br>
+• Events in the game are kept in the EventManager for easy tracking.<br>
 
 BATTLE<br>
-•	Oyunda karakterler etkileşime girdiğinde collider’ları geçici süreliğine kapatılmakta ve bu esnada küçük bir animasyon (DOTween ile) oynatılmaktadır.<br>
-•	Oyunun kazanılması ve kaybedilmesi durumuna göre bir text ve return butonu aktif edilmektedir. <br>
-
+• When the characters interact in the game, their colliders are temporarily closed and a small animation (with DOTween) is played during this time.<br>
+• A text and return button are activated depending on whether the game is won or lost.<br>
 
 
 You can play game 
