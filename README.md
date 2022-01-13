@@ -7,7 +7,7 @@ PLAYER <br>
 •	Oyun başlatıldığında seçilen kartlar BattlePreparation scripti aracılığıyla GameObject olarak instantiate edilmektedir.<br>
 
 ENEMY<br>
-•	Oyundaki enemy’nin şekil özellikleri rasgele oluşturulan 10 Hero’dan birisi seçilerek verilmektedir.<br> 
+•	Oyundaki enemy’nin şekil özellikleri (renk ayrıca random) rasgele oluşturulan 10 Hero’dan birisi seçilerek verilmektedir.<br> 
 •	Enemy AP ve HP değerleri rasgele atanmaktadır. <br>
 
 SHAPE, SIZE VE COLOR SCRIPTABLE OBJECTS <br>
