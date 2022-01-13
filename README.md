@@ -23,3 +23,8 @@ EVENTS<br>
 BATTLE<br>
 •	Oyunda karakterler etkileşime girdiğinde collider’ları geçici süreliğine kapatılmakta ve bu esnada küçük bir animasyon (DOTween ile) oynatılmaktadır.<br>
 •	Oyunun kazanılması ve kaybedilmesi durumuna göre bir text ve return butonu aktif edilmektedir. <br>
+
+
+
+You can play game 
+https://taskinvedat.itch.io/turnbasedrpgcase
