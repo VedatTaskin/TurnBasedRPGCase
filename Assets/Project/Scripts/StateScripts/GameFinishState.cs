@@ -12,5 +12,9 @@ public class GameFinishState : BaseState
     {
 
     }
+    public override void OnTriggerEnter2D(StateManager stateM, Collider2D collider2D)
+    {
+
+    }
 
 }

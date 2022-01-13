@@ -35,6 +35,7 @@ public class DefaultCharacterControl : StateManager, IPointerClickHandler, IDama
         slider.value = (float)HP / sliderMaxValue;
 
         transform.DOShakePosition(0.5f, 1, 10, 30); // we give some shake
+        StartCoroutine(CloseColliderLittleTime(1.5f));
     }
 
     public virtual void Die(){}
@@ -48,8 +49,6 @@ public class DefaultCharacterControl : StateManager, IPointerClickHandler, IDama
         slider.value = (float) HP / sliderMaxValue;
         text.text = gameObject.name;
     }
-
-    public virtual void OnTriggerEnter2D(Collider2D collider2D) { }
 
     // we close colider some time to prevent double hit
     public IEnumerator CloseColliderLittleTime(float t)

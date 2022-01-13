@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class EnemyControl : DefaultCharacterControl
 {
-    GameObject targetGO;  // temporary target
+    public GameObject targetGO;  // temporary target
 
     public override void OnEnable()
     {
@@ -75,21 +75,6 @@ public class EnemyControl : DefaultCharacterControl
     {
         SwitchState(gameFinishState);
         gameObject.SetActive(false);
-    }
-
-    public override void OnTriggerEnter2D(Collider2D collider2D)
-    {
-        IDamagable damagable = collider2D.gameObject.GetComponent<IDamagable>();
-
-        if (damagable != null && currentState.GetType() == enemyAttackState.GetType() && targetGO.name == collider2D.name)
-        {
-            damagable.TakeDamage(AP);
-
-            if (boxCollider2D.isActiveAndEnabled)
-            {
-                StartCoroutine(CloseColliderLittleTime(1.5f));
-            }
-        }
     }
 
 }

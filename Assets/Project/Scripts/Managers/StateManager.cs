@@ -28,7 +28,6 @@ public class StateManager : MonoBehaviour
         currentState = playerTurnState;
     }
 
-
     public virtual void SwitchState(BaseState baseState)
     {
         currentState = baseState;
@@ -38,5 +37,10 @@ public class StateManager : MonoBehaviour
     public virtual void OnStateChanged(BaseState baseState)
     {
         currentState = baseState;
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        currentState.OnTriggerEnter2D(this, collider2D);
     }
 }
