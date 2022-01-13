@@ -59,11 +59,12 @@ public class BattlePreparation : MonoBehaviour
         }
     }
 
-    //we choose random hero for our enemy shape (among 10 hero )
+    //we shape enemy randomly 
     private void CreateEnemy()
     {
         enemy.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f); // we need this to set default scale  when activate and deactivate enemy
         enemy.GetComponent<SpriteRenderer>().material = heroes[UnityEngine.Random.Range(0, heroes.Count)].material;
+        enemy.GetComponent<SpriteRenderer>().material.color = new Color(UnityEngine.Random.Range(0f, 1f),UnityEngine.Random.Range(0f, 1f),UnityEngine.Random.Range(0f, 1f));
         enemy.GetComponent<SpriteRenderer>().sprite = heroes[UnityEngine.Random.Range(0, heroes.Count)].sprite;
         enemy.GetComponent<Transform>().localScale *= (int) heroes[UnityEngine.Random.Range(0, heroes.Count)].sizeType;
         enemy.SetActive(true);
