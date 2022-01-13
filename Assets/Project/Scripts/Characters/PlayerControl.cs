@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 
 
-public class PlayerControl : DefaultCharacterControl
+public class PlayerControl : DefaultCharacterControl, IPointerClickHandler
 {
     public override void Start()
     {
@@ -19,7 +19,7 @@ public class PlayerControl : DefaultCharacterControl
         Destroy(gameObject);
     }
 
-    public override void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
 
         if (currentState.GetType() ==playerTurnState.GetType())

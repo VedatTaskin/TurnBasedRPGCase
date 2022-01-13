@@ -5,7 +5,7 @@ using DG.Tweening;
 using System.Collections;
 using System;
 
-public class DefaultCharacterControl : StateManager, IPointerClickHandler, IDamagable 
+public class DefaultCharacterControl : StateManager, IDamagable 
 {
     protected Slider slider;
     protected int sliderMaxValue;
@@ -20,8 +20,6 @@ public class DefaultCharacterControl : StateManager, IPointerClickHandler, IDama
         base.OnEnable();
         SetSliderAndText();
     }
-
-    public virtual void OnPointerClick(PointerEventData eventData){}
 
     public virtual void TakeDamage(int damage)
     {
